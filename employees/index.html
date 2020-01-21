@@ -1,0 +1,44 @@
+<html>
+  <head>
+    <script src="https://unpkg.com/vue"></script>
+  </head>
+  <body>
+    <div id="app">
+      <select-number initial='100' suffix='EUR'> </select-number>
+      <select-number> </select-number>
+      <select-number initial='200' suffix='SFR'> </select-number>  
+    </div>
+    <script>
+      const SelectNumberComponent = ('select-number', {
+        data: function() {
+          //this.props.max = this.max
+          return {
+            count: this.initial            
+          }
+        },
+        // props: ['suffix', 'initial'],
+        props: {
+          suffix: {
+            type: String,
+            required: true
+          },
+          initial: {
+            type: String,
+            required: false,
+            default: '10'
+          },
+          max: {
+            type: String,
+            required: false,
+            default: '0'
+          }
+        },
+        template: "<div><input type='number' v-model='count'> Selected number: {{ count }} {{ suffix }}</div>"
+      });
+      const my = new Vue ({
+        el: "#app",
+        components: { 'select-number': SelectNumberComponent }
+      });
+    </script>
+  </body>
+</html>
